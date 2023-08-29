@@ -14,12 +14,13 @@ app.get('/', (req, res) => {
     try {
         const {url}  = req.query;
         const {data} = await axios.get(url);
-        // console.log(data);
+        console.log(data);
         const $ = cheerio.load(data);
         let p = $("p").text()
-        console.log(p);
-        p = p.substring(0,200);
        
+        console.log(p);
+        
+        // p = p.substring(0,200);      
         res.json(p)
     } catch (error) {
         console.log(error);
@@ -31,17 +32,5 @@ app.get('/', (req, res) => {
     console.log(`Server is listening at http://localhost:${port}`);
   });
 
-
-const fetchData = async ()=>{
-  try {
-    const {data} = await axios.get('https://www.wikipedia.org');
-    // console.log(data);
-    const $ = cheerio.load(data);
-    const p = $("h1").text()
-    return p;
-  } catch (error) {
-    console.log(error);
-  }
-}
 
   
