@@ -16,9 +16,11 @@ app.get('/', (req, res) => {
         const {data} = await axios.get(url);
         // console.log(data);
         const $ = cheerio.load(data);
-        const p = $("p").text()
-        res.json(p)
+        let p = $("p").text()
         console.log(p);
+        p = p.substring(0,200);
+       
+        res.json(p)
     } catch (error) {
         console.log(error);
     }
