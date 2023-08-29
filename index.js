@@ -13,7 +13,10 @@ app.get('/', (req, res) => {
   app.post('/getresponse',async(req,res)=>{
     try {
         const {url}  = req.query;
-        const {data} = await axios.get(url);
+        const resp = await axios.get(url);
+        if(resp.status === 200)
+        {
+        const {data} = resp
         console.log(data);
         const $ = cheerio.load(data);
         let p = $("p").text()
@@ -22,6 +25,10 @@ app.get('/', (req, res) => {
         
         p = p.substring(0,3000);      
         res.json(p)
+        }
+        else{
+          res.status(400).json(resp)
+        }
     } catch (error) {
         console.log(error);
         res.status(500).json(error)
