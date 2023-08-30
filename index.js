@@ -38,7 +38,10 @@ app.post("/getresponse", async (req, res) => {
       const allText = [...pTagsText, ...hTagsText, ...aTags];
 
       const resultedText = allText.join(' ');
-      const responseText = resultedText.substring(0,3000);
+
+      const formatedText = resultedText.replace(/[^\x20-\x7E]/g, '').replace(/[\n\r\t]/g, ' ');
+
+      const responseText = formatedText.substring(0,3000);
 
       res.json({responseText});
       // let p = $("p").text();
