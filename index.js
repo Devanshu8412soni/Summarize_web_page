@@ -24,7 +24,7 @@ app.post("/getresponse", async (req, res) => {
       const pTags = $("p").text();
 
       let result = aTags + "\n" + pTags;
-      result = result.substring(0,3000);
+      result = result.substring(0,2000);
       res.json(result); 
 
       // let p = $("p").text();
