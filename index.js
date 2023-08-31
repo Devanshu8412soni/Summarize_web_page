@@ -41,10 +41,11 @@ app.post("/getresponse", async (req, res) => {
 
       const formatedText = resultedText.replace(/[^\x20-\x7E]/g, '').replace(/[\n\r\t]/g, ' ');
 
-      const responseText = formatedText.substring(0,3000);
 
-      responseText = {
-        "formatedText": formatedText
+      const limitedText = formatedText.substring(0, 3000);
+
+      const responseText = {
+        "limitedText": limitedText
       };
       
       res.json(responseText);
