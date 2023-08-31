@@ -43,7 +43,13 @@ app.post("/getresponse", async (req, res) => {
 
       const responseText = formatedText.substring(0,3000);
 
-      res.json({responseText});
+      responseText = {
+        "formatedText": formatedText
+      };
+      
+      res.json(responseText);
+
+      // res.json({responseText});
       // let p = $("p").text();
 
       // console.log(p);
