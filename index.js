@@ -20,37 +20,13 @@ app.post("/getresponse", async (req, res) => {
       const $ = cheerio.load(data);
 
       //Extract text form <p> tags
-      const pTagsText = $("p")
-        .map((index, element) => $(element).text())
-        .get();
+      const aTags = $("a").text();
+      const pTags = $("p").text();
 
-      // Extract text from <h1> to <h6> tags
-      const hTagsText = $("h1, h2, h3, h4, h5, h6")
-        .map((index, element) => $(element).text())
-        .get();
+      let result = aTags + "\n" + pTags;
+      result = result.substring(0,3000);
+      res.json(result); 
 
-      // Extract text from <a> tags
-      const aTags = $("a")
-        .map((index, element) => $(element).text())
-        .get();
-
-      // Combine all the extracted text into a single array
-      const allText = [...pTagsText, ...hTagsText, ...aTags];
-
-      const resultedText = allText.join(' ');
-
-      const formatedText = resultedText.replace(/[^\x20-\x7E]/g, '').replace(/[\n\r\t]/g, ' ');
-
-
-      const limitedText = formatedText.substring(0, 3000);
-
-      const responseText = {
-        "limitedText": limitedText
-      };
-      
-      res.json(responseText);
-
-      // res.json({responseText});
       // let p = $("p").text();
 
       // console.log(p);
