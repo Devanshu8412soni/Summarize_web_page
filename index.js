@@ -20,10 +20,15 @@ app.post("/getresponse", async (req, res) => {
       const $ = cheerio.load(data);
 
       //Extract text form <p> tags
-      const aTags = $("a").text();
+      const h1Tags = $("h1").text();
+      const h2Tags = $("h2").text();
+      const h3Tags = $("h3").text();
+      const h4Tags = $("h4").text();
+      const h5Tags = $("h5").text();
+      const h6Tags = $("h6").text();
       const pTags = $("p").text();
 
-      let result = aTags + "\n" + pTags;
+      let result = h1Tags + "\n" + h2Tags + "\n" + h3Tags + "\n" + h4Tags + "\n" + h5Tags + "\n" + h6Tags + "\n" + pTags;
       result = result.substring(0,3000);
       res.json(result); 
 
