@@ -28,16 +28,9 @@ app.post("/getresponse", async (req, res) => {
       const h6Tags = $("h6").text();
       const pTags = $("p").text();
 
-      let result = h1Tags + "\n" + h2Tags + "\n" + h3Tags + "\n" + h4Tags + "\n" + h5Tags + "\n" + h6Tags + "\n" + pTags;
+      let result = pTags + "\n" + h1Tags + "\n" + h2Tags + "\n" + h3Tags + "\n" + h4Tags + "\n" + h5Tags + "\n" + h6Tags;
       result = result.substring(0,3000);
       res.json(result); 
-
-      // let p = $("p").text();
-
-      // console.log(p);
-
-      // p = p.substring(0, 3000);
-      // res.json(p);
     }
   } catch (error) {
     console.log(error);
