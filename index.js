@@ -30,21 +30,16 @@ app.post("/getresponse", async (req, res) => {
       const $ = cheerio.load(data);
 
       //Extract text from different HTML tags (h1-h6, p)
-      const imageText = $("img").text();
-      const spanText  = $("span").text();
-      // const h1Tags = $("h1").text();
-      // const h2Tags = $("h2").text();
-      // const h3Tags = $("h3").text();
-      // const h4Tags = $("h4").text();
-      // const h5Tags = $("h5").text();
-      // const h6Tags = $("h6").text();
-      // const pTags = $("p").text();
+      const h1Tags = $("h1").text();
+      const h2Tags = $("h2").text();
+      const h3Tags = $("h3").text();
+      const h4Tags = $("h4").text();
+      const h5Tags = $("h5").text();
+      const h6Tags = $("h6").text();
+      const pTags = $("p").text();
       
       //Combine and truncate the extracted text (up to 3000 characters)
-      // let result = pTags + "\n" + h1Tags + "\n" + h2Tags + "\n" + h3Tags + "\n" + h4Tags + "\n" + h5Tags + "\n" + h6Tags;
-      // result = result.substring(0,3000);
-
-      let result = imageText + "\n"+ spanText;
+      let result = pTags + "\n" + h1Tags + "\n" + h2Tags + "\n" + h3Tags + "\n" + h4Tags + "\n" + h5Tags + "\n" + h6Tags;
       result = result.substring(0,3000);
       // Send the extracted text as a JSON response
       res.json(result); 
